@@ -1,0 +1,137 @@
+.reviews {
+	max-width: 950px;
+	margin: 20px auto 0;
+	padding: 20px 10px;
+	border-top: 1px solid #f6f6f6;
+	&__sort {
+		&-block {
+			position: relative;
+		}
+		&-btn {
+			border: none;
+			background: none;
+			cursor: pointer;
+			font-size: 20px;
+			padding: 5px 20px;
+			border: 1px solid #000;
+			color: #000;
+			border-radius: 10px;
+			transition: 0.1s linear;
+			@media (max-width: 380px) {
+				font-size: 15px;
+			}
+			&:hover {
+				background-color: #000;
+				color: #fff;
+			}
+		}
+	}
+	&__top {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__title {
+		font-size: 30px;
+		margin-bottom: 10px;
+		@media (max-width: 450px) {
+			font-size: 25px;
+		}
+		@media (max-width: 380px) {
+			font-size: 22px;
+		}
+		@media (max-width: 340px) {
+			font-size: 20px;
+		}
+	}
+	&__empty-title {
+		margin-top: 10px;
+		text-align: center;
+		font-size: 32px;
+		line-height: 34px;
+		max-width: 620px;
+		margin: 0 auto;
+		@media (max-width: 640px) {
+			font-size: 28px;
+		}
+		@media (max-width: 570px) {
+			font-size: 27px;
+			max-width: 450px;
+		}
+		@media (max-width: 400px) {
+			font-size: 23px;
+		}
+		@media (max-width: 340px) {
+			font-size: 21px;
+			max-width: 450px;
+		}
+	}
+	&__main-block {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+	&__create {
+		&-block {
+			margin-bottom: 20px;
+		}
+		&-switch {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+	}
+	&__block {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		padding: 10px 0;
+		&:not(:last-child) {
+			border-bottom: 1px solid #f6f6f6;
+		}
+		&-img {
+			max-width: 50px;
+			border-radius: 50%;
+		}
+		&-desc {
+			width: 100%;
+		}
+		&-top {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-bottom: 10px;
+		}
+		&-left {
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			font-size: 18px;
+		}
+		&-text {
+			margin-bottom: 5px;
+		}
+		&-btn {
+			cursor: pointer;
+			margin-bottom: 10px;
+		}
+		&-date {
+			color: #b9b9b9;
+			font-size: 14px;
+		}
+		&-like {
+			width: 17px;
+			height: auto;
+		}
+		&-bottom {
+			cursor: pointer;
+			margin-top: 10px;
+			display: flex;
+			gap: 5px;
+			align-items: center;
+			h6 {
+				font-size: 14px;
+			}
+		}
+	}
+}

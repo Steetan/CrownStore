@@ -1,0 +1,33 @@
+.popup-menu {
+	position: absolute;
+	overflow: hidden;
+	background-color: #fff;
+	z-index: 2;
+	border: 1px solid #7b7b7b;
+	border-radius: 10px;
+	padding: 9px 5px;
+	top: 60px;
+	right: -40px;
+	min-width: 185px;
+	&__switch {
+		margin-left: 0px !important;
+	}
+	&-wrap {
+		position: relative;
+	}
+	&-item {
+		transition: 0.2s linear;
+		padding: 10px;
+		cursor: pointer;
+		border-radius: 10px;
+		&:hover {
+			background-color: #000;
+			color: #fff;
+		}
+	}
+	&-info-user {
+		text-align: center;
+		margin: 5px 0 12px;
+		font-size: 18px;
+	}
+}

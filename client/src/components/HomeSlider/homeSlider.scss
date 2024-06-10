@@ -1,0 +1,155 @@
+.slider {
+	&-desc-block {
+		max-width: 500px;
+		@media (max-width: 770px) {
+			max-width: 400px;
+		}
+		@media (max-width: 640px) {
+			max-width: 330px;
+		}
+		@media (max-width: 500px) {
+			max-width: none;
+		}
+	}
+	&-img img {
+		max-height: 230px;
+		@media (max-width: 900px) {
+			max-height: 160px;
+		}
+		@media (max-width: 770px) {
+			max-height: 130px;
+		}
+		@media (max-width: 640px) {
+			max-height: 120px;
+		}
+		@media (max-width: 500px) {
+			display: none;
+		}
+	}
+	&-item {
+		display: flex !important;
+		justify-content: space-between;
+		align-items: center;
+		padding: 20px 30px;
+		border-radius: 15px;
+		overflow: auto;
+		height: 250px;
+		border-bottom-left-radius: 20px;
+		border-bottom-right-radius: 20px;
+		overflow: hidden;
+		cursor: pointer;
+		background-image: var(--gradient1);
+		animation: slide1 20s infinite;
+		animation-fill-mode: both;
+		animation-direction: alternate;
+		background: linear-gradient(
+			90deg,
+			rgb(23, 173, 50) 10%,
+			rgb(25, 35, 176) 30%,
+			rgb(167, 174, 37) 60%,
+			rgba(23, 173, 50, 1) 95%
+		);
+		background-size: 400% 400%;
+
+		&--2 {
+			background-color: #ff3cac;
+			background: linear-gradient(
+				90deg,
+				rgb(169, 65, 162) 10%,
+				rgb(51, 179, 42) 30%,
+				rgb(34, 170, 125) 60%,
+				rgba(169, 65, 162, 1) 95%
+			);
+			background-size: 400% 400%;
+		}
+		&--3 {
+			background: linear-gradient(
+				90deg,
+				rgb(197, 27, 55) 10%,
+				rgb(41, 76, 182) 30%,
+				rgb(181, 45, 186) 60%,
+				rgba(197, 27, 55, 1) 95%
+			);
+			background-size: 400% 400%;
+		}
+		&--4 {
+			background: linear-gradient(
+				90deg,
+				rgba(131, 58, 180, 1) 10%,
+				rgb(118, 175, 4) 30%,
+				rgb(230, 115, 21) 60%,
+				rgba(131, 58, 180, 1) 95%
+			);
+			background-size: 400% 400%;
+		}
+		h3,
+		p {
+			color: #fff;
+		}
+		h3 {
+			font-size: 30px;
+			font-weight: 700;
+			margin-bottom: 10px;
+		}
+		p {
+			font-size: 20px;
+			font-weight: 400;
+		}
+		@media (max-width: 900px) {
+			height: 200px;
+			h3 {
+				font-size: 25px;
+			}
+			p {
+				font-size: 15px;
+			}
+			padding: 10px 20px;
+		}
+		@media (max-width: 770px) {
+			height: 160px;
+			h3 {
+				font-size: 20px;
+			}
+			p {
+				font-size: 14px;
+			}
+		}
+		@media (max-width: 640px) {
+			height: 160px;
+			h3 {
+				font-size: 17px;
+			}
+			p {
+				font-size: 13px;
+			}
+			padding: 10px;
+		}
+		@media (max-width: 500px) {
+			height: 150px;
+			h3,
+			p {
+				text-align: center;
+			}
+			h3 {
+				font-size: 16px;
+			}
+		}
+	}
+	margin: 0 auto;
+}
+
+.slick {
+	&-prev,
+	&-next {
+		display: none !important;
+	}
+}
+
+@keyframes slide1 {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}

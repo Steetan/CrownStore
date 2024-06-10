@@ -1,0 +1,183 @@
+.aside {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	width: 270px;
+	position: absolute;
+	top: 0;
+	left: -400px;
+	height: 100vh;
+	align-self: center;
+	background-color: #fff;
+	border-radius: 0 20px 10px 0;
+	overflow: hidden;
+	padding: 10px;
+	z-index: 4;
+	transition: 0.4s ease-in-out;
+	overflow-y: auto;
+	&.active {
+		left: 0;
+	}
+	&__slider {
+		margin-bottom: 10px;
+		max-width: 200px;
+		&-wrap {
+			display: flex;
+			justify-content: center;
+		}
+	}
+	&__main {
+		&-title {
+			font-size: 30px;
+			text-align: center;
+			margin-bottom: 20px;
+		}
+	}
+	&__title {
+		font-size: 25px;
+		margin-bottom: 10px;
+	}
+	&-close {
+		position: relative;
+		width: 25px;
+		height: 25px;
+		&-wrapper {
+			cursor: pointer;
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			transition: 0.4s ease-in-out;
+			&:hover {
+				transform: rotate(180deg);
+			}
+		}
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			width: 2px;
+			height: 100%;
+			background-color: #000;
+		}
+		&::before {
+			left: 12px;
+			transform: rotate(45deg);
+		}
+		&::after {
+			right: 12px;
+			transform: rotate(-45deg);
+		}
+	}
+	&__filter {
+		&-main {
+			margin-bottom: 20px;
+		}
+		&-inputs {
+			display: flex;
+			gap: 10px;
+		}
+		&-input {
+			max-width: 120px;
+			border: 1px solid #000;
+			font-size: 18px;
+			border-radius: 5px;
+			padding: 5px;
+		}
+	}
+	&__category {
+		&-block {
+			cursor: pointer;
+			padding: 10px 20px;
+			border-radius: 10px;
+			&.active {
+				background-color: #000;
+				color: #fff;
+			}
+		}
+	}
+	&__rating {
+		&-blocks {
+			display: flex;
+			flex-direction: column;
+		}
+		&-block {
+			cursor: pointer;
+			padding: 10px;
+			font-size: 15px;
+			transition: 0.2s linear;
+			&.active {
+				background-color: #000;
+				color: #fff;
+			}
+			&:hover {
+				background-color: #e5e5e5;
+				color: #000;
+			}
+		}
+	}
+	&__buttons {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+		margin-top: auto;
+		gap: 10px;
+	}
+	&__button {
+		cursor: pointer;
+		font-size: 20px;
+		background-color: #fff;
+		border: 1px solid #000;
+		border-radius: 10px;
+		padding: 10px 20px;
+		position: relative;
+		z-index: 2;
+		overflow: hidden;
+		transition: 0.2s ease-in-out;
+		&--reset {
+			margin-top: auto;
+		}
+		&::before {
+			transition: 0.2s ease-in-out;
+			content: '';
+			background-color: #000;
+			width: 270px;
+			height: 70px;
+			position: absolute;
+			top: -80px;
+			left: -20px;
+			z-index: -1;
+		}
+		&:hover {
+			color: #fff;
+			&::before {
+				top: -5px;
+			}
+		}
+	}
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type='number'] {
+	-moz-appearance: textfield;
+}
+input[type='number']:hover,
+input[type='number']:focus {
+	-moz-appearance: number-input;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.dark-theme .aside-close::before,
+.dark-theme .aside-close::after {
+	background-color: #fff;
+}

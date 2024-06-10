@@ -1,0 +1,74 @@
+@import '../../scss/variables';
+
+.search__input-block {
+	padding: 10px;
+	padding-left: 40px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	width: 200px;
+	font-size: 18px;
+	transition: 0.4s ease-in-out;
+	&:focus {
+		width: 400px;
+	}
+}
+
+.search__img {
+	position: absolute;
+	top: 43px / 2 - 12px;
+	left: 12px;
+	z-index: 2;
+	width: 24px;
+	height: 24px;
+	opacity: 0.5;
+}
+
+.search__delete-img {
+	position: absolute;
+	cursor: pointer;
+	opacity: 5px;
+	background-color: #fff;
+	border-radius: 50%;
+	top: 43px / 2 - 12px;
+	right: 5px;
+	transition: 0.3s ease-in-out;
+	&:hover {
+		opacity: 1;
+		transform: rotate(180deg);
+	}
+}
+
+.dark-theme .search__delete-img {
+	background-color: #252525;
+}
+
+.search__block {
+	position: relative;
+	@media (max-width: 1280px) {
+		left: 0;
+		.search__input-block {
+			transition: 0.2s ease-in-out;
+			&:focus {
+				width: 260px;
+			}
+		}
+	}
+	@media (max-width: 960px) {
+		left: 0;
+		.search__input-block {
+			width: 350px;
+			&:focus {
+				width: 450px;
+			}
+		}
+	}
+	@media (max-width: 580px) {
+		left: 0;
+		.search__input-block {
+			width: 100%;
+			&:focus {
+				width: 100%;
+			}
+		}
+	}
+}

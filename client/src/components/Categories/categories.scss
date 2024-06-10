@@ -1,0 +1,97 @@
+@import '../../scss/variables';
+
+.categories {
+	max-height: 350px;
+	padding: 10px;
+	z-index: 2;
+	min-width: 250px;
+	position: absolute;
+	top: 65px;
+	left: -20px;
+	background-color: #ffffff;
+	border: 1px solid #7f7f7f;
+	border-radius: 10px;
+	overflow: auto;
+	max-width: 100%;
+	&-main {
+		width: max-content;
+		position: relative;
+	}
+	ul {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		li {
+			text-align: center;
+			background-color: #f9f9f9;
+			padding: 13px 30px;
+			border-radius: 30px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: 0.1s ease-in-out;
+			@include noselect();
+
+			&:hover {
+				background-color: darken(#f9f9f9, 2%);
+			}
+
+			&:active {
+				transform: scale(0.98);
+				background-color: darken(#f9f9f9, 5%);
+			}
+
+			&.active {
+				background-color: #282828;
+				color: #fff;
+			}
+		}
+	}
+}
+
+.dark-theme .categories li {
+	background-color: #2c2c2c;
+	&:hover {
+		color: #000;
+	}
+	&.active {
+		background-color: #5a5a5a;
+	}
+}
+
+.popup {
+	display: none;
+}
+
+.popup-enter-active {
+	animation: enter 0.2s;
+	animation-fill-mode: forwards;
+}
+
+.popup-exit-active {
+	animation: exit 0.2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes enter {
+	from {
+		margin-top: 20px;
+		opacity: 0;
+		display: none;
+	}
+	to {
+		margin-top: 0;
+		opacity: 1;
+		display: block;
+	}
+}
+@keyframes exit {
+	from {
+		opacity: 1;
+	}
+	to {
+		margin-top: 20px;
+		opacity: 0;
+		display: none;
+	}
+}

@@ -1,0 +1,107 @@
+.settings {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	&__title {
+		font-size: 30px;
+		text-align: center;
+		margin-bottom: 30px;
+	}
+
+	&__main-block {
+		justify-content: center;
+		display: flex;
+		gap: 20px;
+		@media (max-width: 800px) {
+			flex-direction: column;
+		}
+	}
+
+	&__block {
+		&-right {
+			min-height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+		}
+	}
+
+	.MuiFormControlLabel-root {
+		margin-top: 10px;
+		justify-content: flex-start;
+	}
+
+	&__btn-delete {
+		background: none;
+		border: none;
+		color: red;
+		font-size: 20px;
+		cursor: pointer;
+		text-align: center;
+		padding: 10px;
+		border-radius: 10px;
+		transition: 0.2s linear;
+		&:hover {
+			color: #fff;
+			background-color: red;
+		}
+		&--acc {
+			margin-top: 20px;
+		}
+	}
+
+	&__password {
+		&-title {
+			text-align: center;
+			margin-bottom: 20px;
+		}
+		&-block {
+			border: 3px solid #8d8d8d;
+			padding: 10px;
+			border-radius: 10px;
+			@media (max-width: 580px) {
+				width: 100%;
+			}
+			@media (max-width: 340px) {
+				padding: 20px;
+				width: auto;
+			}
+		}
+		&-inputs {
+			display: flex;
+			gap: 10px;
+			@media (max-width: 580px) {
+				flex-direction: column;
+				align-items: center;
+			}
+		}
+		&-hr {
+			@media (max-width: 580px) {
+				display: none !important;
+			}
+		}
+		&-input:first-child {
+			border-right: 2px solid #555555;
+			@media (max-width: 580px) {
+				border-right: none;
+				padding: 0;
+			}
+			padding-right: 15px;
+			@media (max-width: 500px) {
+				border: none;
+			}
+		}
+	}
+	&__btn-password {
+		&-block {
+			display: flex;
+			justify-content: center;
+			margin-top: 10px;
+		}
+		&-update {
+			display: flex;
+		}
+	}
+}

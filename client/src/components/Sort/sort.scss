@@ -1,0 +1,73 @@
+@import '../../scss/variables';
+
+.sort {
+	position: relative;
+	&__label {
+		display: flex;
+		align-items: center;
+
+		svg {
+			margin-right: 8px;
+		}
+
+		b {
+			margin-right: 8px;
+		}
+
+		span {
+			color: $blue;
+			border-bottom: 1px dashed $blue;
+			cursor: pointer;
+		}
+
+		@media (max-width: 360px) {
+			b,
+			span {
+				font-size: 14px;
+			}
+		}
+	}
+
+	&__popup {
+		z-index: 2;
+		position: absolute;
+		right: 0;
+		margin-top: 15px;
+		background: #ffffff;
+		box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.09);
+		border-radius: 10px;
+		overflow: hidden;
+		padding: 10px 0;
+		width: 160px;
+		&--reviews {
+			width: 200px;
+			ul li.active {
+				color: #242424 !important;
+			}
+		}
+		ul {
+			overflow: hidden;
+			li {
+				padding: 12px 20px;
+				cursor: pointer;
+
+				&.active,
+				&:hover {
+					background: rgba(36, 123, 244, 0.05);
+				}
+
+				&.active {
+					font-weight: bold;
+					color: $blue;
+				}
+			}
+		}
+	}
+}
+
+.arrowBottom {
+	transition: 0.2s linear;
+	&.active {
+		transform: rotate(180deg);
+	}
+}
