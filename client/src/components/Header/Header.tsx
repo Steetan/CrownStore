@@ -126,7 +126,7 @@ export const Header: React.FC = () => {
 					)}
 
 					<div className='header__btns-right'>
-						{location.pathname !== '/cart' && location.pathname === '/' && !isNotHomePage && (
+						{!isNotHomePage && (
 							<>
 								<img
 									src={require('../../assets/favorites.png')}

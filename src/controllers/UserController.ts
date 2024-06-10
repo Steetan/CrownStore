@@ -444,14 +444,22 @@ export const deleteUsers = (req: Request, res: Response) => {
 			[req.query.id],
 			(error: Error, results: QueryResult) => {
 				if (error) throw error
-				pool.query(
-					'DELETE FROM carts WHERE user_id = $1',
-					[req.query.product],
-					(error: Error, results: QueryResult) => {
+				pool.query('DELETE FROM carts', [req.query.id], (error: Error, results: QueryResult) => {
+					if (error) throw error
+					pool.query('DELETE FROM orders', (error: Error, resultsOrders: QueryResult) => {
 						if (error) throw error
-						res.status(200).json({ message: 'user has been deleted' })
-					},
-				)
+						pool.query('DELETE FROM orders_product', (error: Error, results: QueryResult) => {
+							if (error) throw error
+							pool.query(
+								'DELETE FROM orders_service',
+								(error: Error, results: QueryResult): any => {
+									if (error) throw error
+									res.status(200).json({ message: 'users has been deleted' })
+								},
+							)
+						})
+					})
+				})
 			},
 		)
 	} catch (error) {
@@ -474,10 +482,31 @@ export const deleteUserById = (req: Request, res: Response) => {
 						if (error) throw error
 						pool.query(
 							'DELETE FROM carts WHERE user_id = $1',
-							[req.query.product],
+							[req.query.user],
 							(error: Error, results: QueryResult) => {
 								if (error) throw error
-								res.status(200).json({ message: 'user has been deleted' })
+								pool.query(
+									'DELETE FROM orders WHERE user_id = $1 RETURNING id',
+									[req.query.user],
+									(error: Error, resultsOrders: QueryResult) => {
+										if (error) throw error
+										pool.query(
+											'DELETE FROM orders_product WHERE order_id = $1',
+											[resultsOrders.rows[0].id],
+											(error: Error, results: QueryResult) => {
+												if (error) throw error
+												pool.query(
+													'DELETE FROM orders_service WHERE order_id = $1',
+													[resultsOrders.rows[0].id],
+													(error: Error, results: QueryResult) => {
+														if (error) throw error
+														res.status(200).json({ message: 'user has been deleted' })
+													},
+												)
+											},
+										)
+									},
+								)
 							},
 						)
 					},
