@@ -1,7 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setFilters, setIsVisibleFilterPopup, setSelectedPage } from '../redux/slices/filterSlice'
+import {
+	setFilters,
+	setIsVisibleFilterPopup,
+	setNameCategory,
+	setSelectedPage,
+} from '../redux/slices/filterSlice'
 import { fetchProducts, setFetchFavorites } from '../redux/slices/productSlice'
 import { RootState, useAppDispatch } from '../redux/store'
 import customAxios from '../axios'
@@ -77,6 +82,8 @@ const Home = () => {
 		if (window.location.search) {
 			const params = qs.parse(window.location.search.substring(1))
 
+			console.log(params)
+
 			const sort = listSort.find((obj) => obj.sort === params.sortProperty)
 			const typeSort = listTypeSort.find((obj) => obj.sort === params.typeSortProperty)
 
@@ -111,6 +118,8 @@ const Home = () => {
 
 		localStorage.getItem('arrService') && localStorage.removeItem('arrService')
 		dispatch(setTotalPriceServices(0))
+
+		nameCategory === 'Аксессуары' && dispatch(setNameCategory('Все'))
 	}, [])
 
 	const getProducts = async () => {
@@ -181,7 +190,7 @@ const Home = () => {
 				typeSortProperty: typeSort.sort,
 				categoryId,
 				selectedPage,
-				nameCategory,
+				nameCategory: nameCategory == 'Аксессуары' ? 'Все' : nameCategory,
 			})
 
 			navigate(`?${queryString}`)
@@ -324,7 +333,9 @@ c26 -69 110 -180 176 -235 113 -94 267 -151 410 -151 349 0 640 291 640 640 0
 				<h2 className='empty-items'>Нет таких товаров 😕</h2>
 			)}
 
-			{status == 'success' && allPages > 1 && <Pagination allPages={allPages} />}
+			{status == 'success' && allPages > 1 && nameCategory !== 'Аксессуары' && (
+				<Pagination allPages={allPages} />
+			)}
 		</div>
 	)
 }
