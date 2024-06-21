@@ -45,8 +45,6 @@ export interface IProductBlock {
 const Home = () => {
 	const [allPages, setAllPages] = React.useState<number>(1)
 	const isAuth = useSelector((state: RootState) => state.authSlice.isAuth)
-	// const {fetchFavorites} = useSelector((state: RootState) => state.productSlice)
-	// const [fetchFavorites, setFetchFavorites] = React.useState<IProduct[]>([])
 
 	const navigate = useNavigate()
 	const dispatch = useAppDispatch()

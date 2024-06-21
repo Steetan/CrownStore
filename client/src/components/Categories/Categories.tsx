@@ -23,6 +23,7 @@ export const Categories: React.FC = React.memo(() => {
 	const { isDarkTheme } = useSelector((state: RootState) => state.authSlice)
 	const dispatch = useAppDispatch()
 	const popupRef = React.useRef<HTMLDivElement>(null)
+	const popupCategory = React.useRef<HTMLDivElement>(null)
 
 	const setCategory = React.useCallback((index: number, item: string) => {
 		dispatch(setCategoryId(index))
@@ -34,22 +35,31 @@ export const Categories: React.FC = React.memo(() => {
 		popupRef.current?.classList.add('popup')
 	}, [])
 
-	const onOpenCategories = () => {
-		setTimeout(() => {
-			setIsVisiblePopup(true)
-		}, 50)
-	}
+	React.useEffect(() => {
+		const handleClickOutSide = (event: MouseEvent) => {
+			const _event = event as MouseEvent & {
+				path: Node[]
+			}
 
-	const onCloseCategories = () => {
-		popupRef.current?.classList.remove('popup')
-		setIsVisiblePopup(false)
-	}
+			if (
+				isVisiblePopup &&
+				popupCategory.current &&
+				!_event.composedPath().includes(popupCategory.current)
+			) {
+				setIsVisiblePopup(false)
+			}
+		}
+
+		document.body.addEventListener('click', handleClickOutSide)
+
+		return () => document.body.removeEventListener('click', handleClickOutSide)
+	}, [isVisiblePopup])
 
 	return (
 		<div
+			ref={popupCategory}
 			className='categories-main'
-			onMouseEnter={() => onOpenCategories()}
-			onMouseLeave={() => onCloseCategories()}
+			onClick={() => setIsVisiblePopup(!isVisiblePopup)}
 		>
 			<button className='button button--menu button--black'>Категории</button>
 			<div

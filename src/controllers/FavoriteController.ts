@@ -31,8 +31,6 @@ export const getFavoritesByArr = (req: Request, res: Response) => {
 
 	const query = `SELECT * FROM product WHERE id IN (${values})`
 
-	console.log(query)
-
 	pool.query(query, (error: Error, results: QueryResult) => {
 		if (error) {
 			throw error

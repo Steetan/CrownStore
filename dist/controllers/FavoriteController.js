@@ -23,7 +23,6 @@ export const getFavoritesByArr = (req, res) => {
     const arrFavorites = JSON.parse(req.query.arrFavorites);
     const values = arrFavorites.map((item) => `'${item}'`).join(',');
     const query = `SELECT * FROM product WHERE id IN (${values})`;
-    console.log(query);
     pool.query(query, (error, results) => {
         if (error) {
             throw error;

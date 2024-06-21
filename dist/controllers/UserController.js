@@ -425,15 +425,17 @@ export const deleteUserById = (req, res) => {
                         pool.query('DELETE FROM orders WHERE user_id = $1 RETURNING id', [req.query.user], (error, resultsOrders) => {
                             if (error)
                                 throw error;
-                            pool.query('DELETE FROM orders_product WHERE order_id = $1', [resultsOrders.rows[0].id], (error, results) => {
-                                if (error)
-                                    throw error;
-                                pool.query('DELETE FROM orders_service WHERE order_id = $1', [resultsOrders.rows[0].id], (error, results) => {
+                            if (resultsOrders.rows.length) {
+                                pool.query('DELETE FROM orders_product WHERE order_id = $1', [resultsOrders.rows[0].id], (error, results) => {
                                     if (error)
                                         throw error;
-                                    res.status(200).json({ message: 'user has been deleted' });
+                                    pool.query('DELETE FROM orders_service WHERE order_id = $1', [resultsOrders.rows[0].id], (error, results) => {
+                                        if (error)
+                                            throw error;
+                                    });
                                 });
-                            });
+                            }
+                            res.status(200).json({ message: 'user has been deleted' });
                         });
                     });
                 });

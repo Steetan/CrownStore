@@ -469,7 +469,6 @@ export const deleteUsers = (req: Request, res: Response) => {
 
 export const deleteUserById = (req: Request, res: Response) => {
 	const token = (req.headers.authorization || '').replace(/Bearer\s?/, '')
-
 	try {
 		jwt.verify(token, `${process.env.JWT_SECRET}`, (err: jwt.VerifyErrors | null, decoded: any) => {
 			if (err) {
@@ -490,21 +489,23 @@ export const deleteUserById = (req: Request, res: Response) => {
 									[req.query.user],
 									(error: Error, resultsOrders: QueryResult) => {
 										if (error) throw error
-										pool.query(
-											'DELETE FROM orders_product WHERE order_id = $1',
-											[resultsOrders.rows[0].id],
-											(error: Error, results: QueryResult) => {
-												if (error) throw error
-												pool.query(
-													'DELETE FROM orders_service WHERE order_id = $1',
-													[resultsOrders.rows[0].id],
-													(error: Error, results: QueryResult) => {
-														if (error) throw error
-														res.status(200).json({ message: 'user has been deleted' })
-													},
-												)
-											},
-										)
+										if (resultsOrders.rows.length) {
+											pool.query(
+												'DELETE FROM orders_product WHERE order_id = $1',
+												[resultsOrders.rows[0].id],
+												(error: Error, results: QueryResult) => {
+													if (error) throw error
+													pool.query(
+														'DELETE FROM orders_service WHERE order_id = $1',
+														[resultsOrders.rows[0].id],
+														(error: Error, results: QueryResult) => {
+															if (error) throw error
+														},
+													)
+												},
+											)
+										}
+										res.status(200).json({ message: 'user has been deleted' })
 									},
 								)
 							},
