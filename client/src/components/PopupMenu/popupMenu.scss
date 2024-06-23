@@ -9,6 +9,9 @@
 	top: 60px;
 	right: -40px;
 	min-width: 185px;
+	@media (max-width: 450px) {
+		right: 0px;
+	}
 	&__switch {
 		margin-left: 0px !important;
 	}
