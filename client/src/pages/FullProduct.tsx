@@ -160,6 +160,17 @@ const FullProduct: React.FC = () => {
 		!isCheckedFavoriteMe ? getArrFavorites(true) : getArrFavorites(false)
 	}
 
+	const copyToClipboard = () => {
+		const url = window.location.href
+		const tempInput = document.createElement('input')
+		document.body.appendChild(tempInput)
+		tempInput.value = url
+		tempInput.select()
+		document.execCommand('copy')
+		document.body.removeChild(tempInput)
+		setCopyLinkText('Ссылка скопирована')
+	}
+
 	return dataProduct ? (
 		<div>
 			<div className='container container--fullProduct'>
@@ -246,10 +257,7 @@ const FullProduct: React.FC = () => {
 							<button
 								style={isDarkTheme ? { color: '#fff' } : {}}
 								className='product-block__link'
-								onClick={() => {
-									navigator.clipboard.writeText(window.location.href)
-									setCopyLinkText('Скопировано')
-								}}
+								onClick={() => copyToClipboard()}
 							>
 								{copyLinkText}
 								<img src={require(`../assets/link.png`)} alt='Product' />
