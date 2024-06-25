@@ -1,17 +1,11 @@
+import moment from 'moment'
+
 export const translateDate = (data: any) => {
 	const newDate = data.map((item: any) => {
-		const dateObj = new Date(item.date)
+		const dateObj = moment(item.date).utcOffset('+0300')
+		const formattedDate = dateObj.format('DD.MM.YYYY')
+		const formattedTime = dateObj.format('HH:mm')
 
-		const formattedDate = dateObj.toLocaleString('ru-RU', {
-			day: '2-digit',
-			month: '2-digit',
-			year: 'numeric',
-		})
-
-		const formattedTime = dateObj.toLocaleTimeString('ru-RU', {
-			hour: '2-digit',
-			minute: '2-digit',
-		})
 		return {
 			...item,
 			date: `${formattedDate}, ${formattedTime}`,
