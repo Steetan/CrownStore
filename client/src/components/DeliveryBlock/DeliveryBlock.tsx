@@ -34,7 +34,7 @@ const DeliveryBlock: React.FC<IDeliveryBlock> = ({ setAddress }) => {
 		fetchMe()
 	}, [])
 	if (loading) {
-		return <p>Loading...</p>
+		return <p>Загрузка данных</p>
 	}
 
 	return (
