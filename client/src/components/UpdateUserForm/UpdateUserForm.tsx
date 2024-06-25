@@ -46,7 +46,7 @@ export const UpdateUserForm = ({}) => {
 	}
 
 	if (loading) {
-		return <p>Loading...</p>
+		return <p>Загрузка данных</p>
 	}
 
 	return (
